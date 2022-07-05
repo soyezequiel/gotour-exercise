@@ -25,15 +25,14 @@ type rot13Reader struct {
 }
 
 func rot13(b byte) byte {
-	switch {
-	case 'A' <= b && b <= 'M':
-		b = (b - 'A') + 'N'
-	case 'N' <= b && b <= 'Z':
-		b = (b - 'N') + 'A'
-	case 'a' <= b && b <= 'm':
-		b = (b - 'a') + 'n'
-	case 'n' <= b && b <= 'z':
-		b = (b - 'n') + 'a'
+	if ('A'<b)&&(b<'Z'){
+		b+=13 
+		if(b>'Z'){b-=26}
+	}else{
+		if ('a'<b)&&(b<'z'){
+			b+=13 
+			if(b>'z'){b-=26}
+		}
 	}
 	return b
 }
